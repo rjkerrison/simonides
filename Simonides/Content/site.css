@@ -1,0 +1,15 @@
+﻿body {
+    background-image: linear-gradient(to bottom, #1A4A1C, #308834 600px);
+    color: #fff;
+}
+
+.deck {
+    width: 1000px;
+}
+
+.card {
+    display: inline-block;
+    width: 226px;
+    padding: 12px;
+    margin: 12px;
+}
