@@ -1,0 +1,13 @@
+﻿@model Simonides.Models.DeckModel
+@{
+    ViewBag.Title = "Memorise a Deck";
+}
+
+<div class="deck">
+    @foreach (var card in Model.Cards)
+    {
+        <div class="card">
+            <img src="@card.Image" alt="@card.Code" width="75" height="105"/>
+        </div>
+    }
+</div>

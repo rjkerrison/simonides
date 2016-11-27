@@ -1,38 +1,69 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Simonides.Models;
-using Simonides.Models.Helpers;
+using Simonides.Models.Managers;
 
 namespace Simonides.Controllers
 {
     public class CardsController : Controller
     {
-        private Uri NewDeck = new Uri("https://deckofcardsapi.com/api/deck/new/draw/?count=52");
+        private IDecksManager _decksManager;
 
         // GET: Cards
-        public ActionResult Index()
+        public ActionResult New()
         {
-            string newDeckJson;
+            var deck = _decksManager.Create();
 
-            if (WebRequester.TryMakeRequest(NewDeck, out newDeckJson))
+            if (deck != null)
             {
-                var model = JsonConvert.DeserializeObject<DeckModel>(newDeckJson);
-
-                return View(model);
+                return RedirectToAction("Show", new {
+                    @id = deck.DeckId
+                });
             }
 
             return RedirectToAction("Error");
+        }
+
+        public ActionResult Index()
+        {
+            var deckModels = _decksManager.GetAll();
+            return View(deckModels);
+        }
+
+        public ActionResult Test(string id)
+        {
+            var deck = _decksManager.Get(id);
+            if (deck != null)
+            {
+                var model = new TestModel
+                {
+                    Deck = deck,
+                    Position = 0
+                };
+
+                return View(model);
+            }
+            return RedirectToAction("Error");
+        }
+
+        public ActionResult Show(string id)
+        {
+            var deck = _decksManager.Get(id);
+            if (deck != null)
+            {
+                return View(deck);
+            }
+            return RedirectToAction("Error");
+        }
+
+        public PartialViewResult TestCard(TestModel testModel)
+        {
+            return PartialView(testModel.Deck.Cards[testModel.Position]);
         }
 
         public ActionResult Error()
         {
             throw new NotImplementedException("I'll do this later");
         }
-
     }
 }

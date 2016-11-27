@@ -1,13 +1,37 @@
-﻿@model Simonides.Models.DeckModel
+﻿@model IList<Simonides.Models.DeckModel>
 @{
     ViewBag.Title = "Memorise a Deck";
 }
 
-<div class="deck">
-    @foreach (var card in Model.Cards)
-    {
-        <div class="card">
-            <img src="@card.Image" alt="@card.Code" />
+<h2>New Deck</h2>
+
+Create a @Html.ActionLink("new deck", "New").
+
+<h2>Previous Decks</h2>
+
+@foreach (var deck in Model)
+{
+    <div class="deck-details">
+        <div class="deck-name">
+            @deck.DeckId
         </div>
-    }
-</div>
+        <div class="show-deck-link">
+             @Html.ActionLink(
+                 "Show Cards",
+                 "Show",
+                 new
+                 {
+                     @id = deck.DeckId
+                 })
+        </div>
+        <div class="test-deck-link">
+            @Html.ActionLink(
+                 "Test Deck",
+                 "Test",
+                 new
+                 {
+                     @id = deck.DeckId
+                 })
+        </div>
+    </div>
+}
