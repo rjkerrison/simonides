@@ -144,7 +144,9 @@
     </Compile>
     <Compile Include="Models\CardModel.cs" />
     <Compile Include="Models\DeckModel.cs" />
+    <Compile Include="Models\Managers\DecksManager.cs" />
     <Compile Include="Models\Helpers\WebRequester.cs" />
+    <Compile Include="Models\TestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
