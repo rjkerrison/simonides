@@ -156,6 +156,9 @@
     <Content Include="Views\Cards\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Cards\Show.cshtml" />
+    <Content Include="Views\Cards\Test.cshtml" />
+    <Content Include="Views\Cards\TestCard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
