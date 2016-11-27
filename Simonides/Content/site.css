@@ -1,15 +1,26 @@
-﻿body {
-    background-image: linear-gradient(to bottom, #1A4A1C, #308834 600px);
+html {
+    height: 100%;
+}
+body {
+    background-image: linear-gradient(to bottom, #1A4A1C, #308834 100%);
     color: #fff;
+    height: 100%;
+    font-family: "Segoe UI", Calibri, Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: #ffffdc;
+}
+a:hover {
+    color: #ffd459;
 }
 
 .deck {
-    width: 1000px;
+    width: 1200px;
 }
 
 .card {
     display: inline-block;
-    width: 226px;
-    padding: 12px;
-    margin: 12px;
+    width: 75px;
+    margin: 5px;
 }
