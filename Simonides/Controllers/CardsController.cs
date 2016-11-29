@@ -66,8 +66,22 @@ namespace Simonides.Controllers
             throw new NotImplementedException("I'll do this later");
         }
 
-        public JsonResult GetMessage()
+        public JsonResult NextTestCard(string id, int position)
         {
+            var deck = _decksManager.Get(id);
+            if (deck != null)
+            {
+                return Json(new
+                {
+                    result = new
+                    {
+                        imagesrc = deck.Cards[position].Image,
+                        cardcode = deck.Cards[position].Code
+                    }
+                },
+                JsonRequestBehavior.AllowGet);
+            }
+
             return Json(new { result = "Hello World From ReactJS Controller" }, JsonRequestBehavior.AllowGet);
         }
     }
