@@ -69,7 +69,7 @@ namespace Simonides.Models.Managers
         {
             var filepath = Path.Combine(DecksPath, $@"{id}.json");
 
-            if (System.IO.File.Exists(filepath))
+            if (File.Exists(filepath))
             {
                 model = CreateDeckModelFromJson(filepath);
                 return true;

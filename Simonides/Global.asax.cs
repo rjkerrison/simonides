@@ -11,6 +11,7 @@ namespace Simonides
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ReactConfig.Configure();
         }
     }
 }

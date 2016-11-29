@@ -7,7 +7,7 @@ namespace Simonides.Controllers
 {
     public class CardsController : Controller
     {
-        private IDecksManager _decksManager;
+        private IDecksManager _decksManager = new DecksManager();
 
         // GET: Cards
         public ActionResult New()
@@ -64,6 +64,11 @@ namespace Simonides.Controllers
         public ActionResult Error()
         {
             throw new NotImplementedException("I'll do this later");
+        }
+
+        public JsonResult GetMessage()
+        {
+            return Json(new { result = "Hello World From ReactJS Controller" }, JsonRequestBehavior.AllowGet);
         }
     }
 }
