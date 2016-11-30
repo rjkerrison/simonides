@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using Simonides.Models.Helpers;
 using Newtonsoft.Json;
 
@@ -10,25 +11,25 @@ namespace Simonides.Models.Managers
     public interface IDecksManager
     {
         DeckModel Create();
-        IEnumerable<DeckModel> GetAll();
+        IList<DeckModel> GetAll();
         DeckModel Get(string id);
     }
 
     public class DecksManager : IDecksManager
     {
-        private Uri NewDeck = new Uri("https://deckofcardsapi.com/api/deck/new/draw/?count=52");
-        private string DecksPath = ConfigurationManager.AppSettings["DecksPath"];
+        private readonly Uri _newDeck = new Uri("https://deckofcardsapi.com/api/deck/new/draw/?count=52");
+        private readonly string _decksPath = ConfigurationManager.AppSettings["_decksPath"];
 
         public DeckModel Create()
         {
             string newDeckJson;
 
-            if (WebRequester.TryMakeRequest(NewDeck, out newDeckJson))
+            if (WebRequester.TryMakeRequest(_newDeck, out newDeckJson))
             {
                 var model = JsonConvert.DeserializeObject<DeckModel>(newDeckJson);
 
                 File.WriteAllText(
-                    Path.Combine(DecksPath, $@"{model.DeckId}.json"),
+                    Path.Combine(_decksPath, $@"{model.DeckId}.json"),
                     newDeckJson);
 
                 return model;
@@ -40,34 +41,24 @@ namespace Simonides.Models.Managers
         public DeckModel Get(string id)
         {
             DeckModel deck;
-            if (TryGetDeckFromJson(id, out deck))
-            {
-                return deck;
-            }
-            return null;
+            return TryGetDeckFromJson(id, out deck) ? deck : null;
         }
 
-        public IEnumerable<DeckModel> GetAll()
+        public IList<DeckModel> GetAll()
         {
-            if (!Directory.Exists(DecksPath))
+            if (!Directory.Exists(_decksPath))
             {
-                Directory.CreateDirectory(DecksPath);
+                Directory.CreateDirectory(_decksPath);
             }
 
-            var filepaths = Directory.EnumerateFiles(DecksPath);
+            var filepaths = Directory.EnumerateFiles(_decksPath);
 
-            IList<DeckModel> deckModels = new List<DeckModel>();
-
-            foreach (var filepath in filepaths)
-            {
-                var model = CreateDeckModelFromJson(filepath);
-                yield return model;
-            }
+            return filepaths.Select(CreateDeckModelFromJson).ToList();
         }
 
         private bool TryGetDeckFromJson(string id, out DeckModel model)
         {
-            var filepath = Path.Combine(DecksPath, $@"{id}.json");
+            var filepath = Path.Combine(_decksPath, $@"{id}.json");
 
             if (File.Exists(filepath))
             {
@@ -81,7 +72,7 @@ namespace Simonides.Models.Managers
             }
         }
 
-        private DeckModel CreateDeckModelFromJson(string filepath)
+        private static DeckModel CreateDeckModelFromJson(string filepath)
         {
             string jsonString;
             using (var fileStream = File.Open(filepath, FileMode.Open))
