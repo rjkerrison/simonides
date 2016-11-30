@@ -17,3 +17,17 @@
 
 <script src="@Url.Content("~/Scripts/HelloWorld.jsx")"></script>
 
+<TestCard deckid="@Model.Deck.DeckId" position="@Model.Position"></TestCard>
+
+<div id="testCardReact">
+
+</div>
+
+@{ Html.React(
+    "TestCard",
+    new {
+       card = Model.Deck.Cards[Model.Position],
+       position = Model.Position
+    },
+    containerId: "testCardReact");
+}
