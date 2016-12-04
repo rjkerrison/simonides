@@ -11,14 +11,14 @@ namespace Simonides
 
             routes.MapRoute(
                 name: "Position",
-                url: "{controller}/{action}/{id}/{position}",
-                defaults: new { controller = "Cards", action = "Index", id = UrlParameter.Optional, position = 0 }
+                url: "{controller}/{action}/{id}/{position}"
+                //defaults: new { controller = "Cards", action = "Index", id = UrlParameter.Optional, position = 0 }
             );
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Cards", action = "Index", id = UrlParameter.Optional, position = 0 }
+                defaults: new { controller = "Cards", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

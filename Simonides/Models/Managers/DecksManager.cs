@@ -18,7 +18,7 @@ namespace Simonides.Models.Managers
     public class DecksManager : IDecksManager
     {
         private readonly Uri _newDeck = new Uri("https://deckofcardsapi.com/api/deck/new/draw/?count=52");
-        private readonly string _decksPath = ConfigurationManager.AppSettings["_decksPath"];
+        private readonly string _decksPath = ConfigurationManager.AppSettings["DecksPath"];
 
         public DeckModel Create()
         {

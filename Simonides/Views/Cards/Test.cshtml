@@ -9,25 +9,11 @@
 
 <h3>Difficulty: Multiple Choice of 4</h3>
 
-@{ Html.RenderAction("TestCard", Model); }
-
-@Html.ActionLink("Next Card", "NextTestCard", Model)
-
-<div id="testcard" position="@Model.Position"></div>
-
-<script src="@Url.Content("~/Scripts/HelloWorld.jsx")"></script>
-
-<TestCard deckid="@Model.Deck.DeckId" position="@Model.Position"></TestCard>
-
-<div id="testCardReact">
-
-</div>
-
-@{ Html.React(
+@Html.React(
     "TestCard",
     new {
-       card = Model.Deck.Cards[Model.Position],
-       position = Model.Position
+        card = Model.Deck.Cards[Model.Position],
+        deckid = Model.Deck.DeckId,
+        position = Model.Position
     },
-    containerId: "testCardReact");
-}
+    serverOnly: true)
