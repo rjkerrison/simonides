@@ -9,7 +9,8 @@
             deckComplete: false
         };
     },
-    testCard(cardCode) {
+
+    makeTestCardRequest(cardCode) {
         var xhr = new XMLHttpRequest();
         xhr.open(
             'GET',
@@ -39,20 +40,37 @@
                 deckid: test.DeckId,
                 position: test.Position,
                 correct: true,
-                deckComplete: false
+                deckComplete: false,
+                checkingCard: null
             });
         }.bind(this);
         xhr.send();
     },
 
+    setTestCardActionState(cardCode) {
+        this.setState({
+            checkingCard: cardCode
+        });
+    },
+
+    testCard(cardCode) {
+        makeTestCardRequest(cardCode);
+        setTestCardActionState(cardCode);
+    },
+
     render() {
         var testCard = this.testCard;
+        var self = this;
 
         var displayCards = this.state.cards.map(function (card, index) {
+            var liClasses = classNames({
+                'card': true,
+                'checking': card.Code == self.state.cardCode
+            });
             return (
                 <li
                     key={index}
-                    className="card"
+                    className={liClasses}
                     onClick={() => testCard(card.Code)} >
                     <img src={card.Image} alt={card.Code} width="75" height="105" />
                 </li>
