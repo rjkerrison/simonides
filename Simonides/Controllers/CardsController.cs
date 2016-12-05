@@ -8,6 +8,7 @@ namespace Simonides.Controllers
     public class CardsController : Controller
     {
         private IDecksManager _decksManager = new DecksManager();
+        private ITestManager _testManager;
 
         // GET: Cards
         public ActionResult New()
@@ -32,18 +33,14 @@ namespace Simonides.Controllers
 
         public ActionResult Test(string id)
         {
-            var deck = _decksManager.Get(id);
-            if (deck != null)
+            if (_testManager == null)
             {
-                var model = new TestModel
-                {
-                    Deck = deck,
-                    Position = 0
-                };
-
-                return View(model);
+                _testManager = new TestManager(_decksManager);
             }
-            return RedirectToAction("Error");
+
+            var model = _testManager.CreateMultipleChoice(id, 0, 4);
+
+            return View(model);
         }
 
         public ActionResult Show(string id)
@@ -56,33 +53,33 @@ namespace Simonides.Controllers
             return RedirectToAction("Error");
         }
 
-        public PartialViewResult TestCard(TestModel testModel)
-        {
-            return PartialView(testModel.Deck.Cards[testModel.Position]);
-        }
-
         public ActionResult Error()
         {
             throw new NotImplementedException("I'll do this later");
         }
 
-        public JsonResult NextTestCard(string id, int position)
+        public JsonResult TestCard(string id, int position, string cardCode)
         {
-            var deck = _decksManager.Get(id);
-            if (deck != null)
+            if (_testManager == null)
             {
-                return Json(new
-                {
+                _testManager = new TestManager(_decksManager);
+            }
+
+            if (_testManager.TestMultipleChoice(id, position, cardCode))
+            {
+                var test = _testManager.CreateMultipleChoice(id, position + 1, 4);
+
+                return Json(new {
                     result = new
                     {
-                        imagesrc = deck.Cards[position].Image,
-                        cardcode = deck.Cards[position].Code
+                        success = true,
+                        test = test
                     }
                 },
                 JsonRequestBehavior.AllowGet);
             }
 
-            return Json(new { result = "Hello World From ReactJS Controller" }, JsonRequestBehavior.AllowGet);
+            return Json(new { result = new { success = false } }, JsonRequestBehavior.AllowGet);
         }
     }
 }

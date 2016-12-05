@@ -1,8 +1,11 @@
-﻿namespace Simonides.Models
+﻿using System.Collections.Generic;
+
+namespace Simonides.Models
 {
     public class TestModel
     {
-        public DeckModel Deck { get; set; }
+        public IList<CardModel> Cards { get; set; }
+        public string DeckId { get; set; }
         public int Position { get; set; }
     }
 }

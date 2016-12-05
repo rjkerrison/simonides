@@ -11,5 +11,12 @@ namespace Simonides.Models
 
         [JsonProperty("deck_id")]
         public string DeckId { get; set; }
+
+        public CardModel this[int index] {
+            get
+            {
+                return Cards[index];
+            } 
+        }
     }
 }

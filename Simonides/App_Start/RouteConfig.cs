@@ -11,7 +11,7 @@ namespace Simonides
 
             routes.MapRoute(
                 name: "Position",
-                url: "{controller}/{action}/{id}/{position}"
+                url: "{controller}/{action}/{id}/{position}/{cardCode}"
                 //defaults: new { controller = "Cards", action = "Index", id = UrlParameter.Optional, position = 0 }
             );
 

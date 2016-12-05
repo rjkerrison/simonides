@@ -2,34 +2,46 @@
 
     getInitialState() {
         return {
-            imagesrc: this.props.card.Image,
-            cardcode: this.props.card.Code,
-            deckid: this.props.deckid,
-            position: this.props.position
+            cards: this.props.Cards,
+            deckid: this.props.DeckId,
+            position: this.props.Position
         };
     },
-    nextCard(evt) {
+    testCard(cardCode) {
         var xhr = new XMLHttpRequest();
-        xhr.open('get', '/Simonides/Cards/NextTestCard/' + this.state.deckid + '/' + (this.state.position + 1), true);
+        xhr.open(
+            'GET',
+            '/Simonides/Cards/TestCard/'
+                + this.state.deckid + '/'
+                + this.state.position + '/'
+                + cardCode, true);
         xhr.onload = function () {
             var response = JSON.parse(xhr.responseText);
 
+            var test = response.result.test;
             this.setState({
-                imagesrc: response.result.imagesrc,
-                cardcode: response.result.cardcode
+                cards: test.Cards,
+                deckid: test.DeckId,
+                position: test.Position
             });
-            this.state.position += 1;
         }.bind(this);
         xhr.send();
     },
 
     render() {
+        var testCard = this.testCard;
+
+        var displayCards = this.state.cards.map(function (card, index) {
+            return (
+                <li key={index} onClick={() => testCard(card.Code)}>
+                    <img src={card.Image} alt={card.Code} width="75" height="105" />
+                </li>
+            )
+        });
+
         return (
             <div className="card">
-                <img src={this.state.imagesrc} alt={this.state.cardcode} width="75" height="105" />
-                <div onClick={this.nextCard}>
-                    NEXT
-                </div>
+                {displayCards}
             </div>
             );
     }

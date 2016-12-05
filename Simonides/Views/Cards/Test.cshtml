@@ -4,16 +4,12 @@
 }
 
 <h2>
-    Test Deck @Model.Deck.DeckId
+    Test Deck @Model.DeckId
 </h2>
 
 <h3>Difficulty: Multiple Choice of 4</h3>
 
 @Html.React(
     "TestCard",
-    new {
-        card = Model.Deck.Cards[Model.Position],
-        deckid = Model.Deck.DeckId,
-        position = Model.Position
-    },
+    Model,
     serverOnly: true)

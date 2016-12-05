@@ -207,6 +207,7 @@
     <Compile Include="Models\DeckModel.cs" />
     <Compile Include="Models\Managers\DecksManager.cs" />
     <Compile Include="Models\Helpers\WebRequester.cs" />
+    <Compile Include="Models\Managers\TestManager.cs" />
     <Compile Include="Models\TestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -221,7 +222,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Cards\Show.cshtml" />
     <Content Include="Views\Cards\Test.cshtml" />
-    <Content Include="Views\Cards\TestCard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
