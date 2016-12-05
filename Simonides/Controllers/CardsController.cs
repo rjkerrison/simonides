@@ -67,19 +67,31 @@ namespace Simonides.Controllers
 
             if (_testManager.TestMultipleChoice(id, position, cardCode))
             {
+                if (position == 51)
+                {
+                    return Json(new { result = new {
+                        success = true,
+                        deckComplete = true
+                    } }, JsonRequestBehavior.AllowGet);
+                }
+
                 var test = _testManager.CreateMultipleChoice(id, position + 1, 4);
 
                 return Json(new {
                     result = new
                     {
                         success = true,
+                        deckComplete = false,
                         test = test
                     }
                 },
                 JsonRequestBehavior.AllowGet);
             }
 
-            return Json(new { result = new { success = false } }, JsonRequestBehavior.AllowGet);
+            return Json(new { result = new {
+                success = false,
+            }
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

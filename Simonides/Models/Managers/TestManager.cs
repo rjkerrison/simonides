@@ -26,7 +26,7 @@ namespace Simonides.Models.Managers
 
             var random = new Random();
             var allCards = deck.Cards
-                .Skip(position)
+                .Skip(position + 1)
                 .OrderBy(x => random.NextDouble())
                 .Take(choices - 1)
                 .ToList();
