@@ -30,7 +30,8 @@ Create a @Html.ActionLink("new deck", "New").
                  "Test",
                  new
                  {
-                     @id = deck.DeckId
+                     @id = deck.DeckId,
+                     @difficulty = Simonides.Models.Enums.TestDifficulty.ChoiceOf2
                  })
         </div>
     </div>

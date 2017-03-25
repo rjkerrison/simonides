@@ -33,7 +33,8 @@ class TestCard extends React.Component {
             '/Simonides/Cards/TestCard/'
                 + this.state.deckid + '/'
                 + this.state.position + '/'
-                + cardCode,
+                + cardCode
+                + '?difficulty=ChoiceOf2',
             true);
 
         xhr.onload = function () {

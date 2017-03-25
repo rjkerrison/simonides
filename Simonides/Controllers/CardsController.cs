@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Simonides.Models.Managers;
+using Simonides.Models.Enums;
 
 namespace Simonides.Controllers
 {
@@ -30,14 +31,14 @@ namespace Simonides.Controllers
             return View(deckModels);
         }
 
-        public ActionResult Test(string id)
+        public ActionResult Test(string id, TestDifficulty difficulty)
         {
             if (_testManager == null)
             {
-                _testManager = new TestManager(_decksManager);
+                _testManager = new TestManager(_decksManager, difficulty);
             }
 
-            var model = _testManager.CreateMultipleChoice(id, 0, 4);
+            var model = _testManager.CreateMultipleChoice(id, 0);
 
             return View(model);
         }
@@ -57,11 +58,11 @@ namespace Simonides.Controllers
             throw new NotImplementedException("I'll do this later");
         }
 
-        public JsonResult TestCard(string id, int position, string cardCode)
+        public JsonResult TestCard(string id, int position, string cardCode, TestDifficulty difficulty)
         {
             if (_testManager == null)
             {
-                _testManager = new TestManager(_decksManager);
+                _testManager = new TestManager(_decksManager, difficulty);
             }
 
             if (_testManager.TestMultipleChoice(id, position, cardCode))
@@ -74,7 +75,7 @@ namespace Simonides.Controllers
                     } }, JsonRequestBehavior.AllowGet);
                 }
 
-                var test = _testManager.CreateMultipleChoice(id, position + 1, 4);
+                var test = _testManager.CreateMultipleChoice(id, position + 1);
 
                 return Json(new {
                     result = new
