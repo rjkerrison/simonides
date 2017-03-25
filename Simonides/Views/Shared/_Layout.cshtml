@@ -10,10 +10,8 @@
 <body>
     @RenderBody()
 
-    <script src="@Url.Content("~/Scripts/react/react.js")"></script>
-    <script src="@Url.Content("~/Scripts/react/react-dom.js")"></script>
+    <script src="@Url.Content("~/Content/build/client.bundle.js")"></script>
 
-    @Scripts.Render("~/bundles/react")
-    @Html.ReactInitJavaScript(clientOnly: true)
+    @Html.ReactInitJavaScript()
 </body>
 </html>
