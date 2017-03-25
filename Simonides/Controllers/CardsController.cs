@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Mvc;
-using Simonides.Models;
 using Simonides.Models.Managers;
 
 namespace Simonides.Controllers
@@ -84,7 +83,7 @@ namespace Simonides.Controllers
                         deckComplete = false,
                         test = test
                     }
-                },
+                }, 
                 JsonRequestBehavior.AllowGet);
             }
 
