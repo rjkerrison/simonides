@@ -13,7 +13,7 @@ namespace Simonides
             // your components as well as all of their dependencies.
             // See http://reactjs.net/ for more information. Example:
             ReactSiteConfiguration.Configuration
-                .AddScript("~/Content/Cards.jsx");
+                .AddScript("~/Content/build/server.bundle.js");
 
             // If you use an external build too (for example, Babel, Webpack,
             // Browserify or Gulp), you can improve performance by disabling 
