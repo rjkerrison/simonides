@@ -23,4 +23,16 @@ a:hover {
     display: inline-block;
     width: 75px;
     margin: 5px;
+    border-radius: 5px;
+    height: 105px;
+    cursor: pointer;
+}
+
+.card.disabled {
+    opacity: 0.5;
+    cursor: initial;
+}
+
+.card.checking {
+    box-shadow: rgba(200,180,0,.8) 0px 0px 10px;
 }
