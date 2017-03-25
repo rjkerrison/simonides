@@ -41,7 +41,8 @@ namespace Simonides.Models.Managers
             {
                 Cards = allCards,
                 DeckId = deckId,
-                Position = position
+                Position = position,
+                Difficulty = _testDifficulty
             };
         }
 

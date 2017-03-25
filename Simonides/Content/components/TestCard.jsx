@@ -8,6 +8,7 @@ class TestCard extends React.Component {
             cards: this.props.Cards,
             deckid: this.props.DeckId,
             position: this.props.Position,
+            difficulty: this.props.Difficulty,
             correct: true,
             deckComplete: false
         };
@@ -34,7 +35,7 @@ class TestCard extends React.Component {
                 + this.state.deckid + '/'
                 + this.state.position + '/'
                 + cardCode
-                + '?difficulty=ChoiceOf2',
+                + '?difficulty=' + this.state.difficulty,
             true);
 
         xhr.onload = function () {

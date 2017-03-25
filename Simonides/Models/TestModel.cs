@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Simonides.Models.Enums;
+using System.Collections.Generic;
 
 namespace Simonides.Models
 {
@@ -7,5 +8,6 @@ namespace Simonides.Models
         public IList<CardModel> Cards { get; set; }
         public string DeckId { get; set; }
         public int Position { get; set; }
+        public TestDifficulty Difficulty { get; set; }
     }
 }
