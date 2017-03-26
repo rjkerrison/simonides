@@ -184,7 +184,9 @@
   <ItemGroup>
     <Content Include="Content\build\client.bundle.js" />
     <Content Include="Content\build\server.bundle.js" />
+    <Content Include="Content\components\DifficultyDropdown.jsx" />
     <Content Include="Content\components\index.js" />
+    <Content Include="Content\components\DifficultyPicker.jsx" />
     <Content Include="Content\components\TestCard.jsx" />
     <Content Include="Content\client.js" />
     <Content Include="Content\server.js" />

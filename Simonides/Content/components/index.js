@@ -1,3 +1,4 @@
 ﻿module.exports = {
-    TestCard: require('./TestCard')
+    TestCard: require('./TestCard'),
+    DifficultyPicker: require('./DifficultyPicker'),
 }

@@ -2,8 +2,8 @@
 {
     public enum TestDifficulty
     {
-        ChoiceOf4 = 0,
-        ChoiceOf2 = 1,
-        ChoiceFromAllRemaining = 2
+        ChoiceOf4 = 4,
+        ChoiceOf2 = 2,
+        ChoiceFromAllRemaining = 0
     }
 }
