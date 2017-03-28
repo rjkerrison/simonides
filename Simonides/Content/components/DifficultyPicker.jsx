@@ -9,20 +9,26 @@ class DifficultyPicker extends React.Component {
         };
     }
 
+    setDropdown(difficulty) {
+        console.log(difficulty);
+        this.setState({
+            difficulty: difficulty
+        })
+    }
+
     render() {
         return (
             <div>
-                <h3>
-                    Difficulty:
-                    <span
-                        onClick={this.openDropdown}>
-                        {this.state.difficulty}
+                <div>
+                    <span className="listLabel">
+                        Difficulty:
                     </span>
-                </h3>
-                <DifficultyDropdown
-                    currentDifficulty={this.state.difficulty}
-                    difficulties={this.props.AvailableDifficulties}
-                />
+                    <DifficultyDropdown
+                        currentDifficulty={this.state.difficulty}
+                        difficulties={this.props.AvailableDifficulties}
+                        setDropdown={this.setDropdown.bind(this)} />
+                </div>
+                
             </div>
         );
     }
