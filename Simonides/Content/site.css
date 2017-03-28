@@ -36,3 +36,80 @@ a:hover {
 .card.checking {
     box-shadow: rgba(200,180,0,.8) 0px 0px 10px;
 }
+
+/* Dropdown Stuff */
+
+span.listLabel {
+    display: inline-block;
+    padding: 4px;
+    vertical-align: text-top;
+}
+
+ul.dropdown {
+    list-style: none;
+    display: inline-block;
+    vertical-align: text-top;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background-color: rgb(201, 212, 41);
+    border-radius: 5px;
+    border-color: rgb(201, 212, 41);
+    border-width: 2px 2px;
+    border-style: solid;
+}
+
+ul.dropdown.closed > li {
+    height: 0px;
+    margin: 0px;
+    overflow: hidden;
+}
+
+ul.dropdown.open > li,
+ul.dropdown.closed > li.selected {
+    height: auto;
+    display: list-item;
+    padding: 4px;
+    cursor: pointer;
+}
+
+ul.dropdown > li > span {
+    margin: 0px 20px 0px 0px;
+}
+
+ul.dropdown.closed > li.selected {
+    background-color: rgba(145, 69, 168, 1)!important;
+    border-radius: 5px;
+}
+
+ul.dropdown.closed > li.selected::after {
+    position: absolute;
+    right: 5px;
+    opacity: 0;
+    content: "\25bc";
+    display: none;
+}
+
+ul.dropdown.closed > li.selected:hover::after {
+    display: inline;
+    opacity: 1;
+    transition: opacity linear 0.5s;
+}
+
+
+ul.dropdown.open > li {
+    background-color: rgba(45, 169, 168, 1);
+    border-radius: 0;
+}
+
+ul.dropdown > li.visible:first-of-type {
+    border-radius: 5px 5px 0 0;
+}
+
+ul.dropdown > li.visible:last-of-type {
+    border-radius: 0 0 5px 5px;
+}
+
+ul.dropdown.open > li:hover {
+    background-color: rgba(45, 69, 68, 1)!important;
+}
