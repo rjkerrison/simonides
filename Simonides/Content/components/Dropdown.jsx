@@ -1,13 +1,12 @@
 ﻿var classNames = require('classnames');
 var React = require('react');
 
-class DifficultyDropdown extends React.Component {
+class Dropdown extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props);
         this.state = {
-            currentDifficulty: props.currentDifficulty,
-            difficulties: this.props.difficulties,
+            selectedOption: this.props.selectedOption,
+            options: this.props.options,
             dropdownOpen: false
         };
     }
@@ -19,9 +18,10 @@ class DifficultyDropdown extends React.Component {
     }
 
     render() {
-        var dropdownOptions = this.state.difficulties.map(function (difficulty, index) {
+        console.log(this.state, this.props);
+        var dropdownOptions = this.state.options.map(function (option, index) {
             var liClasses = classNames({
-                'selected': difficulty == this.props.currentDifficulty,
+                'selected': option == this.props.selectedOption,
                 'visible': this.state.dropdownOpen,
             });
 
@@ -29,8 +29,8 @@ class DifficultyDropdown extends React.Component {
                 <li
                     key={index}
                     className={liClasses}
-                    onClick={() => this.state.dropdownOpen ? this.props.setDropdown(difficulty) : null} >
-                    <span>{difficulty}</span>
+                    onClick={() => this.state.dropdownOpen ? this.props.setDropdown(option) : null} >
+                    <span>{option}</span>
                 </li>
             )
         }.bind(this));
@@ -51,4 +51,4 @@ class DifficultyDropdown extends React.Component {
     }
 }
 
-module.exports = DifficultyDropdown;
+module.exports = Dropdown;

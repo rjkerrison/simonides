@@ -9,10 +9,14 @@
 
 
 @Html.React(
-    "Components.DifficultyPicker",
-    Model,
+    "Components.DropdownPicker",
+    new {
+        SelectedOption = Model.Difficulty.ToString(),
+        Options = Model.AvailableDifficulties,
+        Label = "Difficulty:"   
+    },
     serverOnly: true)
-
+        
 @Html.React(
     "Components.TestCard",
     Model,
