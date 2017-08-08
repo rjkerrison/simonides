@@ -10,9 +10,15 @@ namespace Simonides
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Position",
+                name: "CardCode",
                 url: "{controller}/{action}/{id}/{position}/{cardCode}"
                 //defaults: new { controller = "Cards", action = "Index", id = UrlParameter.Optional, position = 0 }
+            );
+
+            routes.MapRoute(
+                name: "Position",
+                url: "{controller}/{action}/{id}/{position}"
+            //defaults: new { controller = "Cards", action = "Index", id = UrlParameter.Optional, position = 0 }
             );
 
             routes.MapRoute(

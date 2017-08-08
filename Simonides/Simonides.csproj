@@ -187,6 +187,7 @@
     <Content Include="Content\components\Dropdown.jsx" />
     <Content Include="Content\components\index.js" />
     <Content Include="Content\components\DropdownPicker.jsx" />
+    <Content Include="Content\components\Test.jsx" />
     <Content Include="Content\components\TestCard.jsx" />
     <Content Include="Content\client.js" />
     <Content Include="Content\server.js" />

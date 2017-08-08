@@ -7,17 +7,7 @@
     Test Deck @Model.DeckId
 </h2>
 
-
 @Html.React(
-    "Components.DropdownPicker",
-    new {
-        SelectedOption = Model.Difficulty.ToString(),
-        Options = Model.AvailableDifficulties,
-        Label = "Difficulty:"   
-    },
-    serverOnly: true)
-        
-@Html.React(
-    "Components.TestCard",
+    "Components.Test",
     Model,
     serverOnly: true)

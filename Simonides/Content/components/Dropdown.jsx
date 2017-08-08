@@ -18,7 +18,6 @@ class Dropdown extends React.Component {
     }
 
     render() {
-        console.log(this.state, this.props);
         var dropdownOptions = this.state.options.map(function (option, index) {
             var liClasses = classNames({
                 'selected': option == this.props.selectedOption,

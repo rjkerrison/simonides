@@ -5,7 +5,7 @@ class DropdownPicker extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedOption: this.props.SelectedOption,
+            selectedOption: this.props.selectedOption
         };  
     }
 
@@ -13,6 +13,9 @@ class DropdownPicker extends React.Component {
         this.setState({
             selectedOption: option
         })
+        if (this.props.setOption && typeof(this.props.setOption) === 'function' ) {
+            this.props.setOption(option)
+        }
     }
 
     render() {
@@ -20,14 +23,14 @@ class DropdownPicker extends React.Component {
             <div>
                 <div>
                     <span className="listLabel">
-                        {this.props.Label}
+                        {this.props.label}
                     </span>
                     <Dropdown
                         selectedOption={this.state.selectedOption}
-                        options={this.props.Options}
-                        setDropdown={this.setDropdown.bind(this)} />
+                        options={this.props.options}
+                        setDropdown={this.setDropdown.bind(this)}
+                        />
                 </div>
-                
             </div>
         );
     }

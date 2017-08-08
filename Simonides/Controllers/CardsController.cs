@@ -93,5 +93,26 @@ namespace Simonides.Controllers
             }
             }, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult ChangeDifficulty(string id, int position, TestDifficulty difficulty)
+        {
+            if (_testManager == null)
+            {
+                _testManager = new TestManager(_decksManager, difficulty);
+            }
+
+            var test = _testManager.CreateMultipleChoice(id, position);
+
+            return Json(new
+            {
+                result = new
+                {
+                    success = true,
+                    deckComplete = false,
+                    test = test
+                }
+            },
+            JsonRequestBehavior.AllowGet);
+        }
     }
 }
