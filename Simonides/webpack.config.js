@@ -18,7 +18,7 @@ module.exports = {
   },
   resolve: {
     // Allow require('./blah') to require blah.jsx
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   externals: {
     // Use external version of React (from CDN for client-side, or
